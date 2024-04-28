@@ -9,7 +9,7 @@ import './About.css'
 
 const About = () => {
   return (
-    <div className="about">
+    <div id='about' className="about">
       <div className="about_title">
         <h1>About Me</h1>
         <img src={theme_pattern} alt="" />
@@ -24,10 +24,10 @@ const About = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ut nisi earum nihil cumque ea laboriosam officia fuga laudantium voluptates, culpa voluptatum ab placeat suscipit hic quidem illo maiores ipsam.</p>
           </div>
           <div className="about_skills">
-            <div className="about_skill"><p>HTML</p> <hr  style={{width: "30% "}}/></div>
-            <div className="about_skill"><p>HTML</p> <hr  style={{width: "30% "}}/></div>
-            <div className="about_skill"><p>HTML</p> <hr  style={{width: "30% "}}/></div>
-            <div className="about_skill"><p>HTML</p> <hr  style={{width: "30% "}}/></div>
+            <div className="about_skill"><p>HTML</p> <hr  style={{width: "80% "}}/></div>
+            <div className="about_skill"><p>HTML</p> <hr  style={{width: "70% "}}/></div>
+            <div className="about_skill"><p>HTML</p> <hr  style={{width: "90% "}}/></div>
+            <div className="about_skill"><p>HTML</p> <hr  style={{width: "50% "}}/></div>
             <div className="about_skill"><p>HTML</p> <hr  style={{width: "30% "}}/></div>
           </div>
          </div>

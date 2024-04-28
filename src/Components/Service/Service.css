@@ -30,7 +30,7 @@
     gap: 20px;
     padding: 60px;
     border-radius: 10px;
-    border: 2px solid white;
+    border: 2px solid #eff0f1;
     transition: .2s;
 }
 
@@ -50,7 +50,7 @@
 .services_format h2{
     font-size: 38px;
     font-weight: 800;
-    background: linear-gradient(240deg, #DA7c25 -5.6%, #103 102%);
+    background: #00adee;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -66,7 +66,7 @@
 
 .services_format:hover{
     transition: .2s;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,16,121,1) 6%, rgba(0,212,255,1) 100%);
+    background: #00adee;
     transform: scale(1.1);
 }
 
@@ -75,6 +75,49 @@
     gap: 20px;
     align-items: center;
     margin-top: 20px;
+}
+
+@media(max-width:768px){
+    .services{
+        align-items: start;
+        gap: 70px;
+        margin: 20px 70px;
+    }
+
+    .service_title h1{
+        padding: 0;
+        font-size: 24px;
+    }
+
+    .service_title img{
+        width: 130px;
+        margin-right: -20px;
+    }
+
+    .services_format{
+        gap: 20px;
+        padding: 30px;
+    }
+
+    .services_format h2{
+        font-size: 18px;
+    }
+
+    .services_format p{
+        font-size: 14px;
+        line-height: 24px;
+        max-width: 300px;
+    }
+
+    .services_readmore img{
+        width: 20px;
+    }
+
+    .service_container{
+        grid-template-columns: 1fr 1fr;
+
+        gap: 30px;
+    }
 }
 
 
