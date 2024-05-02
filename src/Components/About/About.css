@@ -22,12 +22,29 @@
     bottom: 0;
     right: 0;
     z-index: -1;
+    border-radius: 100px;
 }
 
 .about_sections{
     display: flex;
     gap:80px;
 
+}
+
+.about_left{
+    position: relative;
+    top: 100px;
+    width: 708px; 
+    height: 300px; 
+    overflow:hidden;
+    border-radius: 50%;
+}
+
+.about_left img{
+    margin-bottom: -50px;
+    margin-left: -75px;
+    width: 450px;
+    height: 450px;
 }
 
 .about_right{
