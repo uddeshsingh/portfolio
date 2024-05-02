@@ -17,6 +17,8 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
       
+      -name: Install
+        run: npm ci
       - name: Build
         run: npm run build
 
