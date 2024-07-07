@@ -20,6 +20,7 @@ jobs:
       
       - name: Install
         run: npm ci
+        run: npm i framer-motion@10.16.4
 
       - name: Build
         run: npm run build
