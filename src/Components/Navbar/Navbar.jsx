@@ -6,6 +6,8 @@ import './Navbar.css'
 import underline from '../../assets/nav_underline.svg'
 
 import logo from '../../assets/logo.svg'
+import scroll_mouse from '../../assets/scroll_mouse.svg'
+
 import menu_open from '../../assets/menu_open.svg'
 import menu_close from '../../assets/menu_close.svg'
 
@@ -25,6 +27,7 @@ const Navbar = () => {
   }
 
   return (
+    <div className="wrapper_navbar">
     <div className='navbar'>
         <motion.span initial={{opacity:0, scale: 0}} animate={{opacity:1, scale:1}} transition={{duration: 0.5}}><img src={logo} alt=""/></motion.span>
         <img src={menu_open} onClick={openMenu} alt="" className='nav_mob_open'/>
@@ -37,6 +40,11 @@ const Navbar = () => {
             <li> <AnchorLink className='anchor_link' offset={50} href='#contact'><p onClick={()=>setMenu("contact")}>Contact</p></AnchorLink>{menu==="contact"?<img src = {underline}/>:<></>}</li>
         </ul>
         <div className='nav-connect'> <AnchorLink className='anchor_link' offset={50} href='#contact'>Contact Me? </AnchorLink></div>
+    </div>
+    <div className="scroll_mouse">
+      <motion.img src = {scroll_mouse} animate = {{y:150, transition:{duration:1, repeat:Infinity}}}/>
+    </div>
+    
     </div>
   )
 }

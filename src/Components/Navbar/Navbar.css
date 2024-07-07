@@ -5,6 +5,19 @@
     margin: 20px 170px;
 }
 
+.scroll_mouse{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.scroll_mouse img{
+    filter: invert(80%);
+    width:250px;
+    padding-top: 50px;
+    object-position: 55%;
+}
+
 .navbar img{
     /* scale: 30%; */
     width: 100px;

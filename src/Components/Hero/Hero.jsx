@@ -15,19 +15,20 @@ const containerVariants = {
 
 const sliderVariants = {
   initial: { x:0 },
-  animate: { x:'-590%', transition:{repeat: Infinity, repeatType:"mirror", duration:5} },
+  animate: { x:'-590%', transition:{repeat: Infinity, repeatType:"mirror", duration:20} },
 };
 
 import profile_img from '../../assets/profile_img.svg'
+import scroll_mouse from '../../assets/scroll_mouse.svg'
 
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const Hero = () => {
   return (
     <div id='home' className='hero'>
-        <motion.img src={profile_img} alt=""  height="500" width = "400" variants = {textVariants} initial = 'initial' animate = 'animate'/>
+        <motion.img className = "profile_img" src={profile_img} alt=""  height="500" width = "400" variants = {textVariants} initial = 'initial' animate = 'animate'/>
         <motion.h1 variants = {textVariants} initial = 'initial' animate = 'animate'>Hi! This is 
-        <motion.span variants = {textVariants} initial = 'initial' animate = 'animate'>Uddesh</motion.span> 
+        <motion.span variants = {textVariants} initial = 'initial' animate = 'animate'> Uddesh</motion.span> 
         </motion.h1>
         <motion.p variants = {textVariants} initial = 'initial' animate = 'animate'>Lorem ipsum</motion.p>
         <motion.div className="hero_action" variants = {containerVariants} initial = 'initial' animate = 'animate'>
