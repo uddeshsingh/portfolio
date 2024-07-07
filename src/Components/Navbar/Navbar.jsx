@@ -1,5 +1,6 @@
 import React from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import {motion} from 'framer-motion'
 
 import './Navbar.css'
 import underline from '../../assets/nav_underline.svg'
@@ -25,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-        <img src={logo}  alt=""/>
+        <motion.span initial={{opacity:0, scale: 0}} animate={{opacity:1, scale:1}} transition={{duration: 0.5}}><img src={logo} alt=""/></motion.span>
         <img src={menu_open} onClick={openMenu} alt="" className='nav_mob_open'/>
         <ul className='nav-menu' ref={menuRef}>
           <img src={menu_close} alt="" className='nav_mob_close' onClick={closeMenu}/>

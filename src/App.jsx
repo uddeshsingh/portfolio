@@ -1,4 +1,5 @@
 import React from 'react'
+import "./App.css"
 import Hero from './Components/Hero/Hero'
 import Navbar from './Components/Navbar/Navbar'
 import About from './Components/About/About'
@@ -11,13 +12,13 @@ const App = () => {
   return (
     <div> 
       
-       <Navbar/>
-       <Hero/>
-       <About/>    
-       <Service/>
-       <Education/>
-       <Contact/>
-       <Footer/>
+       <section id='navbar'><Navbar/></section>
+       <section><Hero/></section>
+       <section id='about'><About/></section>
+       <section><Service/></section>
+       <section><Education/></section>
+       <section><Contact/></section>
+       <section id='footer'><Footer/></section>
     </div>
    
   )

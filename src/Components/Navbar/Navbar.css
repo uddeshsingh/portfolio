@@ -5,6 +5,11 @@
     margin: 20px 170px;
 }
 
+.navbar img{
+    /* scale: 30%; */
+    width: 100px;
+}
+
 .nav-menu{
     display: flex;
     align-items: center;
@@ -70,9 +75,7 @@
     .nav_mob_close{
         display: block;
         position: relative;
-        top: 30px;
-        left: 290px;
-        width: 30px;
+        align-self: flex-end;
     }
 
     .nav-menu{
@@ -86,12 +89,13 @@
         height: 100%;
         z-index: 2;
         transition: right 0.3s;
-        right: -350px;
+        right: -100000px;
     }
 
     .nav-menu li{
         font-size: 30px;
-        padding-left: 100px;
+        padding-left: 20px;
+        align-self: flex-start;
         flex-direction: row;
         gap: 20px;
     }
