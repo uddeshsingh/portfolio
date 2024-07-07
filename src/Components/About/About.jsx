@@ -4,12 +4,22 @@ import profile_img from '../../assets/about_profile.svg'
 
 import theme_pattern from '../../assets/theme_pattern.svg'
 
+import {motion} from 'framer-motion'
+
 import './About.css'
 
 
 const About = () => {
   return (
     <div id='about' className="about">
+      <div className="bg_wrapper">
+      <div className="bg_left"></div>
+      <motion.div className="bg_mid" whileHover={{opacity:0, scale:1, duration: 2}} >
+        <img src="https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+      </motion.div>
+      <div className="bg_right"></div>
+      
+      </div>
       <div className="about_title">
         <h1>About Me</h1>
         <img src={theme_pattern} alt="" />

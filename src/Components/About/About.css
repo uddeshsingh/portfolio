@@ -4,8 +4,54 @@
     align-items: center;
     justify-content: center;
     margin: 80px 170px;
-    gap: 80px;
+    height:100vh;
+    gap: 200px;
+    background-color: transparent;
 }
+
+.bg_wrapper{
+    position: absolute;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+.bg_left{
+    width: 30%;
+    height: 100vh;
+    background: linear-gradient(180deg,#181d20, #111111);
+    align-self: flex-start;
+    position: absolute; /* Position absolutely within .bg_wrapper */
+    transform: rotate(20deg) scale(2) translateX(-40%);
+    z-index: 0;
+}
+
+.bg_mid{
+    width: 100%;
+    height: 100vh;
+    background: rgb(18, 67, 111);
+    z-index: -1;
+    position: absolute; /* Position absolutely within .bg_wrapper */
+}
+
+.bg_mid img{
+    transform: scale(1.5);
+}
+
+.bg_right{
+    width: 30%;
+    height: 100vh;
+    background: linear-gradient(180deg,#181d20, #111111);
+    align-self:flex-end;
+    position: absolute; /* Position absolutely within .bg_wrapper */
+    transform: rotate(20deg) scale(2) translateX(150%);
+    z-index: 0;
+}
+
+
 
 .about_title{
     position: relative;
@@ -105,6 +151,7 @@
     align-items: center;
     gap: 25px;
     transition: .5s;
+    z-index: 3;
 }
 
 .about_achievement h1{
