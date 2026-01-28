@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Briefcase, GraduationCap, Code2, Server } from "lucide-react";
-import { COLORS } from "../theme"; // Using centralized color
+import { COLORS } from "./theme"; // Using centralized color
 
 const journeyData = [
   {

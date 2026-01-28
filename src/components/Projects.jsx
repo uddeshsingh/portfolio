@@ -7,7 +7,7 @@ import {
   TrendingUp,
   Shield,
 } from "lucide-react";
-import { COLORS } from "../theme";
+import { COLORS } from "./theme";
 
 const projects = [
   {

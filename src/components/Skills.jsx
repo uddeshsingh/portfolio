@@ -12,7 +12,7 @@ import {
   Hash,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { COLORS } from "../theme";
+import { COLORS } from "./theme";
 
 // --- CONFIGURATION ---
 const GLOBE_RADIUS = 180;
