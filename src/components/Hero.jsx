@@ -1,7 +1,8 @@
 // src/components/Hero.jsx
 import React, { useState, useEffect } from "react";
-import { Github, Linkedin, FileText } from "lucide-react";
+import { Github, Linkedin, FileText, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import profileImg from "../assets/profile.png";
 
 const Hero = () => {
   const [text, setText] = useState("");
@@ -11,9 +12,9 @@ const Hero = () => {
 
   const phrases = [
     "Full Stack Developer",
-    "IoT Specialist",
-    "UI/UX Designer",
-    "Tech Enthusiast",
+    "Cloud Engineer",
+    "AI/ML Enthusiast",
+    "Golang & Python Expert",
   ];
 
   useEffect(() => {
@@ -44,75 +45,92 @@ const Hero = () => {
   return (
     <div className="relative w-full h-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center pointer-events-none">
       {/* --- LEFT COL: Name & Intro --- */}
-      <div className="md:col-span-4 flex flex-col justify-center items-start z-20">
+      <div className="md:col-span-7 flex flex-col justify-center items-start z-20">
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="pointer-events-auto pl-2"
+          // ADDED: select-none to prevent text highlighting while clicking
+          className="pointer-events-auto pl-2 select-none"
         >
           <h2 className="text-4xl text-gray-400 font-script -rotate-2 mb-4 ml-1">
             Hi! I Am
           </h2>
-          <h1 className="text-7xl md:text-9xl font-bold text-amber-500 tracking-tighter leading-none drop-shadow-[0_0_25px_rgba(245,158,11,0.4)]">
+          <h1 className="heading-hero text-amber-500 drop-shadow-[0_0_25px_rgba(245,158,11,0.4)]">
             Uddesh <br /> Singh
           </h1>
 
-          <div className="mt-6 text-2xl md:text-3xl font-mono text-neonBlue h-10 flex items-center">
+          <div className="mt-6 text-2xl md:text-4xl text-mono-accent h-10 flex items-center">
             <span>{text}</span>
-            <span className="w-[3px] h-8 md:h-10 bg-neonPink ml-2 animate-pulse"></span>
+            <span className="w-[3px] h-8 md:h-10 bg-[--neon-pink] ml-2 animate-pulse"></span>
           </div>
+
+          <p className="mt-8 text-gray-400 text-lg max-w-lg leading-relaxed">
+            Graduate student at UT Dallas specializing in scalable software
+            architectures, cloud computing, and AI integration.
+          </p>
         </motion.div>
       </div>
 
-      {/* --- CENTER COL: Portrait --- */}
-      <div className="md:col-span-4 flex justify-center items-center relative h-full z-10">
-        <div className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full border border-amber-500/20 bg-gradient-to-t from-amber-500/10 to-transparent backdrop-blur-[1px]"></div>
-
-        {/* Placeholder for the "Jumping Man" or Portrait */}
-        <motion.img
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          src="https://pngimg.com/uploads/man/man_PNG6505.png"
-          alt="John Deo"
-          className="relative z-10 w-full h-[60vh] md:h-[75vh] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
-        />
-      </div>
-
-      {/* --- RIGHT COL: Links --- */}
-      <div className="md:col-span-4 flex flex-col justify-center items-end z-20">
+      {/* --- CENTER/RIGHT COL: Portrait --- */}
+      <div className="md:col-span-5 flex-center relative h-full z-10">
+        <div className="absolute w-[350px] h-[350px] bg-amber-500/20 rounded-full blur-[80px] -z-10 animate-pulse" />
         <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col gap-6 pointer-events-auto pr-2"
+          initial={{ opacity: 0, scale: 0.8, y: 50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 w-full flex justify-center"
         >
-          <SocialLink icon={<Github size={24} />} label="GitHub" href="#" />
-          <SocialLink icon={<Linkedin size={24} />} label="LinkedIn" href="#" />
-          <SocialLink
-            icon={<FileText size={24} />}
-            label="Download CV"
-            href="#"
-            isPrimary
+          <img
+            src={profileImg}
+            alt="Uddesh Singh"
+            // ADDED: select-none and draggable="false"
+            className="w-auto h-[50vh] md:h-[65vh] object-contain drop-shadow-[0_0_30px_rgba(245,158,11,0.3)] mask-image-gradient select-none"
+            draggable="false"
           />
         </motion.div>
+      </div>
+
+      {/* --- RIGHT FLOAT: Links --- */}
+      <div className="absolute right-6 bottom-20 md:right-12 md:bottom-auto md:top-1/2 md:-translate-y-1/2 flex flex-col gap-6 z-30 pointer-events-auto">
+        <SocialLink
+          icon={<Github size={24} />}
+          href="https://github.com/uddeshsingh"
+          label="GitHub"
+        />
+        <SocialLink
+          icon={<Linkedin size={24} />}
+          href="https://linkedin.com/in/uddesh-singh"
+          label="LinkedIn"
+        />
+        <SocialLink
+          icon={<Mail size={24} />}
+          href="mailto:uxs230004@utdallas.edu"
+          label="Email"
+        />
+        <SocialLink
+          icon={<FileText size={24} />}
+          href="/UddeshSingh_EA_Resume.pdf"
+          label="CV"
+          isPrimary
+        />
       </div>
     </div>
   );
 };
 
-const SocialLink = ({ icon, label, href, isPrimary }) => (
+const SocialLink = ({ icon, href, isPrimary, label }) => (
   <a
     href={href}
-    className={`flex items-center gap-4 px-8 py-4 rounded-full transition-all duration-300 group
-      ${
-        isPrimary
-          ? "bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-900/40 justify-center font-bold text-lg"
-          : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-neonBlue border border-white/10 text-lg"
-      }`}
+    target="_blank"
+    rel="noopener noreferrer"
+    title={label}
+    className={`social-icon ${
+      isPrimary
+        ? "bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-900/40 border-0"
+        : ""
+    }`}
   >
     {icon}
-    <span className="font-medium">{label}</span>
   </a>
 );
 

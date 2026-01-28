@@ -2,22 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00ff;
+  --dark-bg: #0a0a0a;
+}
+
 @layer base {
   body {
-    background-color: #0a0a0a;
-    color: white;
-    overflow-x: hidden;
+    @apply bg-[--dark-bg] text-white overflow-x-hidden font-sans selection:bg-[--neon-blue] selection:text-black;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  /* --- Layout Wrappers --- */
+  .section-screen {
+    @apply w-full min-h-screen relative z-20 overflow-hidden;
   }
   
-  html {
-    scroll-behavior: smooth;
+  .container-default {
+    @apply w-full max-w-7xl mx-auto px-6 py-20;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  /* --- Typography --- */
+  .heading-hero {
+    @apply text-7xl md:text-9xl font-bold tracking-tighter leading-none;
+  }
+
+  .heading-section {
+    @apply text-5xl font-bold text-center mb-20 text-transparent bg-clip-text bg-gradient-to-r from-[--neon-blue] to-purple-500;
+  }
+
+  .text-mono-accent {
+    @apply font-mono text-[--neon-blue];
+  }
+
+  /* --- Glassmorphism & Cards --- */
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.3)];
+  }
+
+  .glass-card-hover {
+    @apply border border-white/5 bg-white/5 transition-all duration-300 hover:border-[#00f3ff]/30 hover:bg-white/10;
+  }
+
+  /* --- UI Elements --- */
+  .btn-primary {
+    @apply py-4 bg-gradient-to-r from-[--neon-blue] to-purple-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed relative overflow-hidden;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+  }
+
+  .input-field {
+    @apply w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[--neon-blue] focus:ring-1 focus:ring-[#00f3ff]/50 transition-all;
+  }
+
+  .social-icon {
+    @apply flex items-center justify-center w-14 h-14 rounded-full transition-all duration-300 relative border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 hover:text-[--neon-blue];
   }
 }
 
 @layer utilities {
-  /* Utility to fade the bottom of images */
   .mask-image-gradient {
     mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
   }
 }
