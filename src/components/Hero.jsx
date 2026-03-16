@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Github, Linkedin, FileText, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import profileImg from "../assets/profile.png";
-import resume from "../assets/Uddesh_Singh_Resume.pdf";
+import resume from "../assets/SoftwareEngineer_UddeshSingh.pdf";
 
 const Hero = () => {
   const [text, setText] = useState("");
