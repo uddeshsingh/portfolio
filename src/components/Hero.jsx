@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Github, Linkedin, FileText, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import profileImg from "../assets/profile.png";
+import resume from "../assets/Uddesh_Singh_Resume.pdf";
 
 const Hero = () => {
   const [text, setText] = useState("");
@@ -109,7 +110,7 @@ const Hero = () => {
         />
         <SocialLink
           icon={<FileText size={24} />}
-          href="/UddeshSingh_EA_Resume.pdf"
+          href={resume}
           label="CV"
           isPrimary
         />
