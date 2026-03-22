@@ -6,23 +6,16 @@ const SpaceBackground = ({ onScoreUpdate }) => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    // Game Constants
     const COLOR_NEON = COLORS.neonBlue;
     const COLOR_BG = COLORS.darkBg;
     const COLOR_ENEMY = COLORS.neonPink;
 
-    // ... (Keep existing game logic logic, but use COLOR_NEON constants instead of hardcoded hex)
-
-    // Game State
     let width, height;
     let mouse = { x: 0, y: 0 };
-    let player = {
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-      angle: 0,
-    };
+    let player = { x: window.innerWidth / 2, y: window.innerHeight / 2, angle: 0 };
     let bullets = [];
     let enemies = [];
     let particles = [];
@@ -41,7 +34,7 @@ const SpaceBackground = ({ onScoreUpdate }) => {
       canvas.height = height;
 
       stars = [];
-      for (let i = 0; i < 150; i++) {
+      for (let i = 0; i < 100; i++) { // Reduced star count for optimization
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -70,13 +63,12 @@ const SpaceBackground = ({ onScoreUpdate }) => {
     };
 
     const createExplosion = (x, y, color) => {
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 10; i++) { // Reduced particle count
         particles.push({
-          x,
-          y,
+          x, y,
           vx: (Math.random() - 0.5) * 8,
           vy: (Math.random() - 0.5) * 8,
-          life: 40 + Math.random() * 20,
+          life: 30 + Math.random() * 20,
           color,
           size: Math.random() * 3,
         });
@@ -120,7 +112,7 @@ const SpaceBackground = ({ onScoreUpdate }) => {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(angle);
-      ctx.shadowBlur = 15;
+      ctx.shadowBlur = 10;
       ctx.shadowColor = COLOR_NEON;
       ctx.beginPath();
       ctx.moveTo(20, 0);
@@ -134,10 +126,17 @@ const SpaceBackground = ({ onScoreUpdate }) => {
       ctx.fillStyle = "#000";
       ctx.fill();
       ctx.restore();
-      ctx.shadowBlur = 0;
     };
 
     const update = () => {
+      // HIGH PERFORMANCE SHORT-CIRCUIT:
+      // If the canvas is scrolled out of view, STOP calculating game logic.
+      const rect = canvas.getBoundingClientRect();
+      if (rect.bottom < 0) {
+        animationFrameId = requestAnimationFrame(update);
+        return;
+      }
+
       frameCount++;
       ctx.fillStyle = COLOR_BG;
       ctx.fillRect(0, 0, width, height);
@@ -154,7 +153,7 @@ const SpaceBackground = ({ onScoreUpdate }) => {
       drawPlayer(player.x, player.y, player.angle);
 
       // Bullets
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 5;
       ctx.shadowColor = "#fff";
       for (let i = bullets.length - 1; i >= 0; i--) {
         let b = bullets[i];
@@ -168,43 +167,21 @@ const SpaceBackground = ({ onScoreUpdate }) => {
         if (b.life <= 0 || b.x < 0 || b.x > width || b.y < 0 || b.y > height)
           bullets.splice(i, 1);
       }
+      ctx.shadowBlur = 0;
 
       // Enemies
       if (frameCount % ENEMY_SPAWN_RATE === 0) {
         const side = Math.floor(Math.random() * 4);
         let ex, ey, evx, evy;
         const speed = 1 + Math.random() * 2;
-        if (side === 0) {
-          ex = Math.random() * width;
-          ey = -30;
-          evx = (Math.random() - 0.5) * 2;
-          evy = speed;
-        } else if (side === 1) {
-          ex = width + 30;
-          ey = Math.random() * height;
-          evx = -speed;
-          evy = (Math.random() - 0.5) * 2;
-        } else if (side === 2) {
-          ex = Math.random() * width;
-          ey = height + 30;
-          evx = (Math.random() - 0.5) * 2;
-          evy = -speed;
-        } else {
-          ex = -30;
-          ey = Math.random() * height;
-          evx = speed;
-          evy = (Math.random() - 0.5) * 2;
-        }
-        enemies.push({
-          x: ex,
-          y: ey,
-          vx: evx,
-          vy: evy,
-          radius: 15 + Math.random() * 10,
-        });
+        if (side === 0) { ex = Math.random() * width; ey = -30; evx = (Math.random() - 0.5) * 2; evy = speed; }
+        else if (side === 1) { ex = width + 30; ey = Math.random() * height; evx = -speed; evy = (Math.random() - 0.5) * 2; }
+        else if (side === 2) { ex = Math.random() * width; ey = height + 30; evx = (Math.random() - 0.5) * 2; evy = -speed; }
+        else { ex = -30; ey = Math.random() * height; evx = speed; evy = (Math.random() - 0.5) * 2; }
+        enemies.push({ x: ex, y: ey, vx: evx, vy: evy, radius: 15 + Math.random() * 10 });
       }
 
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 5;
       ctx.shadowColor = COLOR_ENEMY;
       for (let i = enemies.length - 1; i >= 0; i--) {
         let e = enemies[i];
@@ -216,12 +193,7 @@ const SpaceBackground = ({ onScoreUpdate }) => {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        if (
-          e.x < -100 ||
-          e.x > width + 100 ||
-          e.y < -100 ||
-          e.y > height + 100
-        ) {
+        if (e.x < -100 || e.x > width + 100 || e.y < -100 || e.y > height + 100) {
           enemies.splice(i, 1);
           continue;
         }
@@ -237,6 +209,7 @@ const SpaceBackground = ({ onScoreUpdate }) => {
           }
         }
       }
+      ctx.shadowBlur = 0;
 
       // Particles
       for (let i = particles.length - 1; i >= 0; i--) {
@@ -254,7 +227,7 @@ const SpaceBackground = ({ onScoreUpdate }) => {
         ctx.globalAlpha = 1;
         if (p.life <= 0) particles.splice(i, 1);
       }
-      ctx.shadowBlur = 0;
+
       animationFrameId = requestAnimationFrame(update);
     };
 
