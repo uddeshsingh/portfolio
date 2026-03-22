@@ -22,20 +22,18 @@ function App() {
   const [score, setScore] = useState(0);
 
   return (
-    // Removed the global solid background color here so the fixed layer can be seen
-    <div className="selection:bg-[--neon-blue] selection:text-black relative min-h-screen text-white">
+    <div className="bg-[--dark-bg] selection:bg-[--neon-blue] selection:text-black relative min-h-screen text-white">
       
-      {/* THE ENTERPRISE BACKGROUND - Fixed at z-0 so it sits above the body but behind content */}
+      {/* THE ENTERPRISE BACKGROUND - Fixed behind content */}
       <div className="fixed inset-0 z-0 opacity-70 pointer-events-none">
         <DataNetworkBackground />
       </div>
 
       <Navbar />
 
-      {/* ALL CONTENT WRAPPED IN z-10 TO FLOAT ABOVE THE NETWORK */}
       <div className="relative z-10">
         <AnimatePresence>
-          {/* HERO - Solid background hides the network while you play the game */}
+          {/* HERO */}
           <section id="hero" className="relative w-full h-screen overflow-hidden bg-[--dark-bg]">
             <motion.div 
               initial={{ opacity: 0 }} 
@@ -60,7 +58,7 @@ function App() {
             </div>
           </section>
 
-          {/* EXPERIENCE - Translucent background (70%) to let the network shine through */}
+          {/* EXPERIENCE */}
           <motion.section 
             id="experience" 
             variants={sectionVariants}
@@ -95,14 +93,14 @@ function App() {
              </div>
           </motion.section>
 
-          {/* PROJECTS */}
+          {/* PROJECTS - Removed 'section-screen' to unblock position: sticky */}
           <motion.section 
             id="projects" 
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="section-screen bg-[#0a0a0a]/70"
+            className="w-full min-h-screen relative z-20 bg-[#0a0a0a]/70"
           >
              <Projects />
           </motion.section>
